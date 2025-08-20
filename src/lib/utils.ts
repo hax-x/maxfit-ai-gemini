@@ -47,7 +47,7 @@ export const audioContext: (options?: GetAudioContextOptions) => Promise<AudioCo
         map.set(options.id, ctx)
       }
       return ctx
-    } catch (e) {
+    } catch (_ignore) {
       await didInteract
       if (options?.id && map.has(options.id)) {
         const ctx = map.get(options.id)
@@ -79,8 +79,8 @@ export const blobToJSON = (blob: Blob) =>
   })
 
 export function base64ToArrayBuffer(base64: string) {
-  var binaryString = atob(base64)
-  var bytes = new Uint8Array(binaryString.length)
+  const binaryString = atob(base64)
+  const bytes = new Uint8Array(binaryString.length)
   for (let i = 0; i < binaryString.length; i++) {
     bytes[i] = binaryString.charCodeAt(i)
   }
